@@ -62,14 +62,10 @@ bindsym $mod+Shift+q kill
 #title settings for fussy windows
 title_align center
 
-#start spotify
-bindsym $mod+Control_L+s exec spotify
-#start steam
-bindsym $mod+Shift+s exec steam
-#start discord
-bindsym $mod+Shift+D exec discord
+#screenshot
+bindcode $mod+96  exec flameshot gui
 
-
+  
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -215,7 +211,7 @@ bindsym $mod+r mode "resize"
 #command= $HOME/.config/i3blocks/scripts/spotify.py
 # finds out, if available
 bar {
-        font pango: Hack 10
+        font pango: Hack 11.5
         position top
         tray_output none
         status_command /usr/bin/bumblebee-status -m    cpu sensors memory nvidiagpu  disk network_traffic  weather    pacman  datetime spotify  dunst       -p nvidiagpu.format={temp}°C %{usedmem}/{totalmem} MiB weather.location=5520993   -a error  spotify pacman          -t iceberg-dark-powerline \
@@ -233,7 +229,6 @@ exec_always --no-startup-id nitrogen  --restore &
 #compton
 exec_always --no-startup-id compton
 
-exec always --nostartup-id  ~/.screenlayout/ihaterandr.sh
 
  # exec --no-startup-id  $HOME/.config/i3/i3-master-stack/i3_master
  # swap to master node
@@ -245,25 +240,10 @@ exec always --nostartup-id  ~/.screenlayout/ihaterandr.sh
 
 #redshift
 
+#xlayoutdisplay
+exec_always --no-startup-id xlayoutdisplay
+
 #polybar
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
 
 
-# Plasma compatibility improvements
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-
-for_window [class="yakuake"] floating enable
-for_window [class="systemsettings"] floating enable
-for_window [class="plasmashell"] floating enable;
-for_window [class="Plasma"] floating enable; border none
-for_window [title="plasma-desktop"] floating enable; border none
-for_window [title="win7"] floating enable; border none
-for_window [class="krunner"] floating enable; border none
-for_window [class="Kmix"] floating enable; border none
-for_window [class="Klipper"] floating enable; border none
-for_window [class="Plasmoidviewer"] floating enable; border none
-for_window [class="(?i)*nextcloud*"] floating disable
-for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
-no_focus [class="plasmashell" window_type="notification"]
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
