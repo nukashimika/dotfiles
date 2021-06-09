@@ -235,5 +235,4 @@ exec_always --no-startup-id picom
  # enable/disable master layout in current workspace
  #bindsym $mod+alt+n nop master toggle 
 
-#redshift
 
