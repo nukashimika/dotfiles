@@ -237,6 +237,3 @@ exec_always --no-startup-id picom
 
 #redshift
 
-#xlayoutdisplay
-exec --no-startup-id xlayoutdisplay
-
