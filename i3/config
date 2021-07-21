@@ -4,7 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
+#
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -25,7 +25,6 @@ font pango: Nono Sans 0 , Helvetica 0
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -44,8 +43,17 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec alacritty
 
+#start an alternete terminal
+bindsym Mod1+Return exec urxvt
+
+#start pcmanfm 
+bindsym Mod1+Shift+Return exec pcmanfm
+
+#start vbox
+bindsym $mod+Shift+v exec virtualbox 
+
 #start emacs
-bindsym control+Shift+e exec emacs
+bindsym Mod1+Shift+e exec emacs
 
 #start pavucontrol
 bindsym $mod+Shift+p exec pavucontrol
@@ -66,21 +74,21 @@ bindsym $mod+Shift+q kill
 title_align center
 
 #start spotify
-bindsym $mod+control+s exec spotify
+bindsym Mod1+Shift+s exec spotify
 #start steam
 bindsym $mod+Shift+s exec steam
 #start discord
-bindsym $mod+Shift+D exec discord
+bindsym $mod+Shift+D exec discord-ptb
 
 #screenshot
 bindcode $mod+96  exec flameshot gui
 
   
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -114,9 +122,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+alt+s layout stacking
-bindsym $mod+alt+w layout tabbed
-bindsym $mod+alt+e layout toggle split
+bindsym $mod+control+s layout stacking
+bindsym $mod+control+w layout tabbed
+bindsym $mod+control+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -180,8 +188,8 @@ bindsym $mod+Shift+plus [title="^Sup ::"] scratchpad show
 
 #i3-gaps
 for_window [class=".*"] border pixel 0
-gaps inner 13
-
+gaps inner 8
+#smart_gaps on 
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -221,35 +229,42 @@ bindsym $mod+r mode "resize"
 #command= $HOME/.config/i3blocks/scripts/spotify.py
 # finds out, if available
 bar {
-        font pango: Hack 11.5
+        font pango: Hack 12.5
         position top
         tray_output none
-        status_command /usr/bin/bumblebee-status -m    cpu sensors memory   disk network_traffic  weather    pacman  datetime   dunst       -p    -a error  spotify pacman          -t iceberg-dark-powerline \
+        status_command /usr/bin/bumblebee-status -m    cpu sensors memory  nvidiagpu  disk network_traffic  weather    pacman  datetime spotify dunst       -p nvidiagpu.format={temp}°C %{usedmem}/{totalmem} MiB weather.location=5520993   -a error  spotify pacman          -t iceberg-rainbow \
+ 
 
         
 
 }
 
 
-
+#####################################################
+#                     STARTUP                       #
+#####################################################
 
 #nitrogen
 exec_always --no-startup-id nitrogen  --restore &
 
+#wal
+#exec_always --no-startup-id feh  -bg-scale ~/wallpapers/0196.jpg              
+
 #picom
 exec_always --no-startup-id picom
 
-exec always --nostartup-id  ~/.screenlayout/ihaterandr.sh
+ #exec_always --nostartup-id  ~/.screenlayout/ihaterandr.sh
 
- # exec --no-startup-id  $HOME/.config/i3/i3-master-stack/i3_master
+ #exec_always --no-startup-id  $HOME/.config/i3/i3-master-stack/i3_master
  # swap to master node
- # bindsym $mod+n nop swap master 
+ # bindsym $mod+Control+n nop swap master 
  # go to master node
- # bindsym $mod+shift+n nop go master 
+  #bindsym $Mod1+Shift+n nop go master 
  # enable/disable master layout in current workspace
- #bindsym $mod+alt+n nop master toggle 
+ #bindsym Control+Shift+n nop master toggle 
 
 #redshift
+#exec --no-startup-id redshift &
 
 #xlayoutdisplay
 exec --no-startup-id xlayoutdisplay
@@ -257,6 +272,31 @@ exec --no-startup-id xlayoutdisplay
 #polybar
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
 
+#dunst 
+exec_always --no-startup-id /usr/bin/dunst/
+
+#emacs daemon 
+exec_always --no-startup-id emacs --daemon
+
+#easyeffects
+#exec_always --no-startup-id easyeffects &
+
+#shadowplay clone
+bindcode $mod+76 exec /home/catherine/shadowplay-linux/.gloom.sh
+
+
+
+#####################################################
+#                     STARTUP                       #
+#####################################################
+
+
+
+#fibbioci
+default_orientation vertical 
+for_window [class=".*"] split toggle
+bindsym $mod+Shift+q split toggle kill 
+bindsym $mod+Mod1+e layout toggle split 
 
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
@@ -276,3 +316,46 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
 no_focus [class="plasmashell" window_type="notification"]
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###########################################################
+#                       WAL                              # 
+##########################################################
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
