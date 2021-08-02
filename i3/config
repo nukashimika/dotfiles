@@ -235,7 +235,8 @@ bar {
         font pango: Hack 12.5
         position top
         tray_output none
-        status_command /usr/bin/bumblebee-status -m    cpu sensors memory  nvidiagpu  disk network_traffic  weather    pacman  datetime spotify dunst   -p nvidiagpu.format={temp}°C %{usedmem}/{totalmem} MiB weather.location=5520993   -a error  spotify pacman          -t iceberg-rainbow \
+        status_command /usr/bin/bumblebee-status -m    cpu sensors memory  nvidiagpu  disk network_traffic  weather    pacman  datetime spotify dunst   -p nvidiagpu.format={temp}°C %{usedmem}/{totalmem} MiB weather.location=
+   -a error  spotify pacman          -t iceberg-rainbow \
  
 
         
