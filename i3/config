@@ -52,6 +52,9 @@ bindsym Mod1+Shift+Return exec pcmanfm
 #start vbox
 bindsym $mod+Shift+v exec virtualbox 
 
+#or virt-manager
+bindsym Mod1+Shift+v exec virt-manager
+
 #start emacs
 bindsym Mod1+Shift+e exec emacs
 
@@ -232,7 +235,7 @@ bar {
         font pango: Hack 12.5
         position top
         tray_output none
-        status_command /usr/bin/bumblebee-status -m    cpu sensors memory  nvidiagpu  disk network_traffic  weather    pacman  datetime spotify dunst       -p nvidiagpu.format={temp}°C %{usedmem}/{totalmem} MiB weather.location=5520993   -a error  spotify pacman          -t iceberg-rainbow \
+        status_command /usr/bin/bumblebee-status -m    cpu sensors memory  nvidiagpu  disk network_traffic  weather    pacman  datetime spotify dunst   -p nvidiagpu.format={temp}°C %{usedmem}/{totalmem} MiB weather.location=5520993   -a error  spotify pacman          -t iceberg-rainbow \
  
 
         
@@ -259,12 +262,12 @@ exec_always --no-startup-id picom
  # swap to master node
  # bindsym $mod+Control+n nop swap master 
  # go to master node
-  #bindsym $Mod1+Shift+n nop go master 
+ #bindsym $mod+Shift+m nop go master 
  # enable/disable master layout in current workspace
- #bindsym Control+Shift+n nop master toggle 
+ #bindsym $mod+Shift+n nop master toggle 
 
 #redshift
-#exec --no-startup-id redshift &
+exec --no-startup-id redshift &
 
 #xlayoutdisplay
 exec --no-startup-id xlayoutdisplay
@@ -323,7 +326,7 @@ for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 
 
-
+for_window [window_role="anbox"] floating enablel
 
 
 
@@ -345,17 +348,17 @@ for_window [title="Desktop — Plasma"] kill; floating enable; border none
 # from the generated scheme.
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color2 #f0f0f0
-
-# class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
-
-client.background       $bg
-
-# PROTIP: You can also dynamically set dmenu's colors this way:
-bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+#set_from_resource $fg i3wm.color7 #f0f0f0
+#set_from_resource $bg i3wm.color2 #f0f0f0
+#
+## class                 border  backgr. text indicator child_border
+#client.focused          $bg     $bg     $fg  $bg       $bg
+#client.focused_inactive $bg     $bg     $fg  $bg       $bg
+#client.unfocused        $bg     $bg     $fg  $bg       $bg
+#client.urgent           $bg     $bg     $fg  $bg       $bg
+#client.placeholder      $bg     $bg     $fg  $bg       $bg
+#
+#client.background       $bg
+#
+## PROTIP: You can also dynamically set dmenu's colors this way:
+#bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
